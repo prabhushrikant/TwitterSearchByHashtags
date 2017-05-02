@@ -12,11 +12,11 @@ import java.util.logging.Logger;
  */
 public class AppInfo {
 
+    private static final Logger LOGGER = Logger.getLogger(twitterLogger.class.getName());
 
     private static AppInfo ourInstance = new AppInfo();
 
     public Properties AppProps = null;
-    private static final Logger LOGGER = Logger.getLogger(twitterLogger.class.getName());
 
     public static AppInfo getInstance() {
         return ourInstance;

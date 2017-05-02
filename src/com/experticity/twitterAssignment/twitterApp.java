@@ -13,6 +13,7 @@ public class twitterApp {
 
     enum OperationType { None, Ingestion, Extraction}
 
+    //static twitterLogger myLogger = twitterLogger.getInstance();
     private static final Logger LOGGER = Logger.getLogger(twitterLogger.class.getName());
 
     private static HashSet<String> _hashTagsToSearch = null;
@@ -132,6 +133,9 @@ public class twitterApp {
     //application start.
     private static void start()
     {
+        LOGGER.log(Level.INFO, "Starting the twitter app using op="+_reqOperation.toString());
+        Properties defaultProp = AppInfo.getInstance().AppProps;
+
         if(_reqOperation == OperationType.Ingestion)
         {
             IngestionUtil ingester = new IngestionUtil();
@@ -139,7 +143,6 @@ public class twitterApp {
         }
         else if(_reqOperation == OperationType.Extraction)
         {
-            Properties defaultProp = AppInfo.getInstance().AppProps;
             String indexName = defaultProp.getProperty("elasticSearchIndexName");
             String type = defaultProp.getProperty("elasticSearchDocumentTypeName");
             ExtractionUtil extractor = new ExtractionUtil();
